@@ -60,7 +60,7 @@ function createUi(movies) {
         'button',
         {
           id: i,
-          click: handleChange,
+          onClick: handleChange,
         },
         movie.watched ? 'watched' : 'to watch'
       )
