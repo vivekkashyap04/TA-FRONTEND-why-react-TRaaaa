@@ -8,41 +8,36 @@ input.addEventListener('keyup', (event) => {
       name: event.target.value,
       watched: false,
     });
-    createUi(allMovies);
+    createUi(allMovies, ul);
     event.target.value = '';
   }
 });
 
-function handleDelete(event) {
-  let id = event.target.dataset.id;
-  allMovies.splice(id, 1);
-  createUI(allMovies);
-}
+// function handleDelete(event) {
+//   let id = event.target.dataset.id;
+//   allMovies.splice(id, 1);
+//   createUI(allMovies);
+// }
 function handleChange(event) {
   let id = event.target.id;
   allMovies[id].watched = !allMovies[id].watched;
-  createUI(allMovies);
+  createUI(allMovies, ul);
 }
 
-function createUi(movies) {
-  ul.innerHTML = '';
+function createUi(movies, root) {
+  root.innerHTML = '';
   movies.forEach((movie, i) => {
     let li = document.createElement('li');
     let name = document.createElement('label');
     name.for = i;
     name.innerText = movie.name;
-    let checkbox = document.createElement('input');
-    checkbox.type = checkbox;
-    checkbox.id = i;
-    checkbox.checked = movie.watched;
-    checkbox.addEventListener('click', handleChange);
-    let close = document.createElement('span');
-    close.innerText = 'X';
-    close.setAttribute = ('data-id', i);
-    close.addEventListener('click', handleDelete);
-    li.append(name, checkbox, close);
+    let button = document.createElement('button');
+    button.id = i;
+    button.innerText = movie.watched ? 'watched' : 'to watch';
+    button.addEventListener('click', handleChange);
+    li.append(name, button);
     ul.append(li);
   });
 }
 
-createUi(allMovies);
+createUi(allMovies, ul);
