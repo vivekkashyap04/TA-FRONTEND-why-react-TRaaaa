@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Articles</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <div id="root"></div>
+    <script type="text/babel">
+      function Button(props) {
+        function getStyles() {
+          return `button button-${
+            props.type ? props.type : buttonTypes.PRIMARY
+          } button-${props.size ? props.size : buttonSizes.MEDIUM}`;
+        }
+        return (
+          <button
+            onClick={props.onClickHandler}
+            className={getStyles() + ' block'}
+            disabled={props.disabled}
+          >
+            {props.label || 'Button'}
+          </button>
+        );
+      }
+
+      function App() {
+        return (
+          <div className="flex flex-col items-center h-60">
+            <Button label="Click Me" />
+            <Button
+              label="Click Me"
+              type={buttonTypes.PRIMARY}
+              size={buttonSizes.SMALL}
+            />
+            <Button
+              label="Click Me"
+              type={buttonTypes.SECONDARY}
+              size={buttonSizes.LARGE}
+            />
+            <Button
+              label="Click Me"
+              type={buttonTypes.TERTIARY}
+              size={buttonSizes.MEDIUM}
+            />
+            <Button disabled />
+            <Button onClickHandler={() => alert('You clicked me')} />
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+  </body>
+</html>
