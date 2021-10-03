@@ -26,6 +26,7 @@
         { id: 'grape', value: '🍇 grape' },
         { id: 'pear', value: '🍐 pear' },
       ];
+
       let card = (
         <>
           <button type="submit" onClick={() => alert('hello react event')}>
@@ -49,28 +50,30 @@
             <Button name="Arya" />
             <Button name="john" />
             <Button name="Bran" />
-            {fruits.map((fruit) => {
-              <button key={fruit.id} onClick={() => alert(fruit.value)}>
-                {fruit.value}
-              </button>;
-            })}
           </div>
         );
+      }
+
+      function Fruit() {
+        return fruits.map((fruit) => (
+          <button key={fruit.id} onClick={() => alert(fruit.value)}>
+            {fruit.value}
+          </button>
+        ));
       }
 
       function Button(props) {
         return <button onClick={() => alert(props.name)}>{props.name}</button>;
       }
 
-      let fruit = fruits.map((fruit) => {
-        return (
-          <button key={fruit.id} onClick={() => alert(fruit.value)}>
-            {fruit.value}
-          </button>
-        );
-      });
 
-      ReactDOM.render(<App />, document.getElementById('root'));
+      ReactDOM.render(
+        <>
+          <App />,
+          <Fruit />
+        </>,
+        document.getElementById('root')
+      );
     </script>
   </body>
 </html>
