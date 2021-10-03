@@ -17,26 +17,45 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <div id="root"></div>
     <script type="text/babel">
-      function App() {
+      function Button(props) {
+        function getStyles() {
+          return `button button-${
+            props.type ? props.type : buttonTypes.PRIMARY
+          } button-${props.size ? props.size : buttonSizes.MEDIUM}`;
+        }
         return (
-          <div>
-            <Button type="secondary" label="Button" size="small" />
-            <Button
-              size="large"
-              label="Button"
-              type="tertiary"
-              onClickHandler={() => alert('You Clicked Me!')}
-            />
-            <Button disabled />
-          </div>
+          <button
+            onClick={props.onClickHandler}
+            className={getStyles() + ' block'}
+            disabled={props.disabled}
+          >
+            {props.label || 'Button'}
+          </button>
         );
       }
 
-      function Button(props) {
+      function App() {
         return (
-          <button label={props.label} type={props.type} size={props.size}>
-            click me
-          </button>
+          <div className="flex flex-col items-center h-60">
+            <Button label="Click Me" />
+            <Button
+              label="Click Me"
+              type={buttonTypes.PRIMARY}
+              size={buttonSizes.SMALL}
+            />
+            <Button
+              label="Click Me"
+              type={buttonTypes.SECONDARY}
+              size={buttonSizes.LARGE}
+            />
+            <Button
+              label="Click Me"
+              type={buttonTypes.TERTIARY}
+              size={buttonSizes.MEDIUM}
+            />
+            <Button disabled />
+            <Button onClickHandler={() => alert('You clicked me')} />
+          </div>
         );
       }
 
