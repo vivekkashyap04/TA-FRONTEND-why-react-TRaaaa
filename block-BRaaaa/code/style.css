@@ -1,0 +1,9 @@
+.main{
+   text-align: center;
+    width: 400px;
+    background-color: aquamarine;
+}
+
+li{
+    list-style-type: none;
+}
