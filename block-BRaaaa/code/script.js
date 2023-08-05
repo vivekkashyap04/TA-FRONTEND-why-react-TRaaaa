@@ -21,7 +21,7 @@ input.addEventListener('keyup', (event) => {
 function handleChange(event) {
   let id = event.target.id;
   allMovies[id].watched = !allMovies[id].watched;
-  createUI(allMovies, ul);
+  createUi(allMovies, ul);
 }
 
 function createUi(movies, root) {
@@ -30,9 +30,11 @@ function createUi(movies, root) {
     let li = document.createElement('li');
     let name = document.createElement('label');
     name.for = i;
+    name.style.color = 'red';
     name.innerText = movie.name;
     let button = document.createElement('button');
     button.id = i;
+    button.style.marginLeft = '15px';
     button.innerText = movie.watched ? 'watched' : 'to watch';
     button.addEventListener('click', handleChange);
     li.append(name, button);
